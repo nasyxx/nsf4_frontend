@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <title>Search</title>
+    <script>
+      function search() {
+          const res_pos = document.querySelector("#result")
+          const url = new URL("http://localhost:8080/q")
+          url.search = new URLSearchParams({key: document.querySelector("#q").value, filter: document.querySelector("select").value})
+          fetch(url)
+              .then((response) => {
+                  res_pos.innerText = "Loading..."
+                  return response.json()
+              })
+              .then((data) => {
+                  console.log(data)
+                  res_pos.innerText = ""
+
+                  const summary = document.createElement("header")
+                  summary.innerHTML = "Total: " + data.total + "<br />Filtered: " + data.results.length
+
+                  res_pos.appendChild(summary)
+
+                  const container = document.createElement("div")
+                  data.results.forEach(hit => {
+                      const r = document.createElement("div")
+                      const h = document.createElement("header")
+                      const a = document.createElement("article")
+                      h.innerText = hit._source.title
+                      a.innerText = hit._source.content
+                      r.appendChild(h)
+                      r.appendChild(a)
+                      container.appendChild(r)
+                  })
+                  res_pos.appendChild(container)
+              })
+      }
+      </script>
+    <style>
+      * {
+          transition: all 0.5s ease-out;
+      }
+      html {
+          background-color: #333;
+          font-family: Optima;
+      }
+      body {
+          display: flex;
+          flex-flow: column;
+          max-width: 720px;
+          margin: auto;
+          padding: 10px 40px;
+          box-shadow: 0 0 5px 0 black;
+          background: white;
+      }
+      h1 {
+          font-family: cursive;
+      }
+      #inp {
+          display: flex;
+          flex-flow: column;
+      }
+      #inp > * {
+          margin: 10px 0;
+      }
+      select, input {
+          height: 2rem;
+          font-size: 1rem;
+          font-family: Optima;
+          background: white;
+          border: none;
+          box-shadow: 0 1px 3px #666;
+          border-radius: 3px;
+          padding: 10px;
+      }
+      #result > header {
+          margin: 10px 0;
+          box-shadow: 0 1px 3px #666;
+          padding: 0 5px;
+          border-radius: 3px;
+      }
+      #result > header:hover {
+          box-shadow: 0 1px 7px #666;
+      }
+      #result > div > div {
+          box-shadow: 0 1px 3px #333;
+          padding: 5px 0;
+          margin: 15px 0;
+          border-radius: 3px;
+      }
+      #result > div > div:hover {
+          box-shadow: 0 1px 7px #333;
+      }
+      #result > div > div > header {
+          background: #eee;
+          padding: 5px 5px;
+      }
+      #result > div > div > article {
+          padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search</h1>
+    <div id="inp">
+      <select onchange="search()">
+        <option value="">None</option>
+        <option>Pacific-Northwest-Coast-Landscape-Conservation-Design_June15-1</option>
+        <option>CCLC-Targets-KEAs-Spatial-Design-Criteria-8-4-17-1</option>
+        <option>WORKING LANDS AND CONSERVATION COMMUNITY MEETING_Chehalis_2Nov2018</option>
+        <option>CONSERVATIONANDWORKINGLANDSCAPES_Warrentonv3_26March2019</option>
+        <option>PlanningToolsAssessment2019</option>
+      </select>
+      <input id="q" onkeypress="return search()" onchange="search()">
+    </div>
+    <div id="result">
+    </div>
+  </body>
+</html>
