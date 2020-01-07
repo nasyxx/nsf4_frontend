@@ -1,7 +1,8 @@
 <html>
   <head>
     <title>Search</title>
-    <script>
+    <script type="text/javascript" src="hilitor.js"></script>
+    <script type="text/javascript">
       function search() {
           const res_pos = document.querySelector("#result")
           const url = new URL("http://localhost:8080/q")
@@ -19,6 +20,7 @@
                   summary.innerHTML = "Total: " + data.total + "<br />Filtered: " + data.results.length
 
                   res_pos.appendChild(summary)
+
 
                   const container = document.createElement("div")
                   data.results.forEach(hit => {
@@ -61,6 +63,10 @@
       }
       #inp > * {
           margin: 10px 0;
+      }
+      #hli{
+        font-size: 1rem;
+        font-family: Optima;
       }
       select, input {
           height: 2rem;
@@ -112,7 +118,25 @@
       </select>
       <input id="q" onkeypress="return search()" onchange="search()">
     </div>
+    <button type="button" id="hli">High Light!</button>
     <div id="result">
     </div>
   </body>
+  <script>
+    var hli = document.getElementById("hli");
+    var tag = true;
+    hli.onclick = function(){
+      if (tag == true) {
+        var myHilitor = new Hilitor("container"); // id of the element to parse
+        var hl = document.getElementById("q").value
+        myHilitor.apply(hl);
+      }
+      else {
+        var myHilitor = new Hilitor("container");
+        myHilitor.remove();
+      }
+      tag = !tag;
+    }
+  </script>
 </html>
+
