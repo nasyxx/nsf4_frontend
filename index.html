@@ -23,15 +23,57 @@
 
 
                   const container = document.createElement("div")
+                  var iv = 0
                   data.results.forEach(hit => {
                       const r = document.createElement("div")
+                      const l = document.createElement("label")
+                      l.for = iv
+                      l.innerHTML = "relevance: "
+                      const select = document.createElement("select")
+                      select.id = iv
+                      const o1 = document.createElement("option")
+                      o1.value = 1
+                      o1.innerHTML = "1"
+                      select.appendChild(o1)
+                      const o2 = document.createElement("option")
+                      o2.value = 2
+                      o2.innerHTML = "2"
+                      select.appendChild(o2)
+                      const o3 = document.createElement("option")
+                      o3.value = 3
+                      o3.innerHTML = "3"
+                      select.appendChild(o3)
+                      const o4 = document.createElement("option")
+                      o4.value = 4
+                      o4.innerHTML = "4"
+                      select.appendChild(o4)
+                      const o5 = document.createElement("option")
+                      o5.value = 5
+                      o5.innerHTML = "5"
+                      select.appendChild(o5)
+                      iv += 1
+                      const rate = document.createElement("input")
+                      rate.value = "rate"
+                      rate.type = "submit"
                       const h = document.createElement("header")
                       const a = document.createElement("article")
                       h.innerText = hit._source.title
                       a.innerText = hit._source.content
                       r.appendChild(h)
                       r.appendChild(a)
+                      r.appendChild(l)
+                      r.appendChild(select)
+                      r.appendChild(rate)
                       container.appendChild(r)
+                      rate.onclick = function(e){
+                        targetNow = e.target
+                        header = targetNow.parentNode.children[0]
+                        article = targetNow.parentNode.children[1]
+                        relevance = targetNow.parentNode.children[3].value
+                        console.log(header)
+                        console.log(article)
+                        console.log(relevance)
+                      }
                   })
                   res_pos.appendChild(container)
               })
@@ -106,7 +148,7 @@
     </style>
   </head>
   <body>
-    <h1>Search</h1>
+    <h1>Question & Answer</h1>
     <div id="inp">
       <select onchange="search()">
         <option value="">No Filter</option>
@@ -118,7 +160,7 @@
       </select>
       <input id="q" onkeypress="return search()" onchange="search()">
     </div>
-    <button type="button" id="hli">High Light!</button>
+    <button type="button" id="hli">HighLight!</button>
     <div id="result">
     </div>
   </body>
