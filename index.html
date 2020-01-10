@@ -115,6 +115,7 @@
         font-size: 1rem;
         font-family: Optima;
       }
+
       select, input {
           height: 2rem;
           font-size: 1rem;
@@ -125,6 +126,44 @@
           border-radius: 3px;
           padding: 10px;
       }
+      select:hover, input:hover {
+          background-color: #eee;
+          box-shadow: 0 1px 3px #666;
+      }
+
+      article {
+          display: flex;
+          flex-flow: column;
+          align-items: flex-start;
+      }
+
+      section {
+          display: flex;
+          border-bottom: 2px solid black;
+      }
+
+      button {
+          font-size: 1rem;
+          font-family: Optima;
+          border: none;
+      }
+
+      .rate {
+          display: flex;
+          align-items: center;
+          padding: 0 5px;
+          margin: 0 5px;
+          box-shadow: none;
+      }
+      .rate:first-child {
+          padding-left: 0;
+          margin-left: 0;
+      }
+      .rate-c:hover {
+          background-color: #eee;
+          box-shadow: 0 1px 3px #666;
+      }
+
       #result > header {
           margin: 10px 0;
           box-shadow: 0 1px 3px #666;
@@ -146,6 +185,10 @@
       #result > div > div > header {
           background: #eee;
           padding: 5px 5px;
+      }
+      #result > div > div > header > h2 {
+          font-size: 1rem;
+          margin: 0;
       }
       #result > div > div > article {
           padding: 5px 10px;
