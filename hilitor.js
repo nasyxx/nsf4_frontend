@@ -1,5 +1,6 @@
 // Original JavaScript code by Chirp Internet: www.chirp.com.au
 // Please acknowledge use of this code by including this header.
+// https://www.the-art-of-web.com/javascript/search-highlight/
 
 function Hilitor(id, tag)
 {
