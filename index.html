@@ -23,49 +23,48 @@
 
 
                   const container = document.createElement("div")
-                  var iv = 0
-                  data.results.forEach(hit => {
-                      const r = document.createElement("div")
-                      const l = document.createElement("label")
-                      l.for = iv
-                      l.innerHTML = "relevance: "
+
+                  data.results.map((hit, iv) => {
+                      const result = document.createElement("div")
+
+                      // Header
+                      const h    = document.createElement("header")
+                      const h_h2 = document.createElement("h2")
+                      h_h2.innerText = hit._source.title
+                      h.appendChild(h_h2)
+                      result.appendChild(h)
+
+                      // Artile box
+                      const article = document.createElement("article")
+                      const para    = document.createElement("p")
+                      para.innerText = hit._source.content
+                      article.appendChild(para)
+
+                      // rate box
+                      const section = document.createElement("section")
+                      const lable = document.createElement("label")
+                      lable.innerText = "relevance:"
+                      lable.classList.add("rate")
+                      section.appendChild(lable)
+
                       const select = document.createElement("select")
-                      select.id = iv
-                      const o1 = document.createElement("option")
-                      o1.value = 1
-                      o1.innerHTML = "1"
-                      select.appendChild(o1)
-                      const o2 = document.createElement("option")
-                      o2.value = 2
-                      o2.innerHTML = "2"
-                      select.appendChild(o2)
-                      const o3 = document.createElement("option")
-                      o3.value = 3
-                      o3.innerHTML = "3"
-                      select.appendChild(o3)
-                      const o4 = document.createElement("option")
-                      o4.value = 4
-                      o4.innerHTML = "4"
-                      select.appendChild(o4)
-                      const o5 = document.createElement("option")
-                      o5.value = 5
-                      o5.innerHTML = "5"
-                      select.appendChild(o5)
-                      iv += 1
-                      const rate = document.createElement("input")
-                      rate.value = "rate"
-                      rate.type = "submit"
-                      const h = document.createElement("header")
-                      const a = document.createElement("article")
-                      h.innerText = hit._source.title
-                      a.innerText = hit._source.content
-                      r.appendChild(h)
-                      r.appendChild(a)
-                      r.appendChild(l)
-                      r.appendChild(select)
-                      r.appendChild(rate)
-                      container.appendChild(r)
-                      rate.onclick = function(e){
+                      select.id = "rate-" + iv
+                      select.classList.add("rate")
+                      select.classList.add("rate-c")
+                      Array(5).fill().map((_, value) => {
+                          const o = document.createElement("option")
+                          o.value = value
+                          o.innerText = value
+                          select.appendChild(o)
+                      })
+                      section.appendChild(select)
+
+                      const rate_b = document.createElement("button")
+                      rate_b.id = "submit-rate"
+                      rate_b.classList.add("rate")
+                      rate_b.classList.add("rate-c")
+                      rate_b.innerText = "Submit"
+                      rate_b.onclick = function(e){
                         targetNow = e.target
                         header = targetNow.parentNode.children[0]
                         article = targetNow.parentNode.children[1]
@@ -74,8 +73,14 @@
                         console.log(article)
                         console.log(relevance)
                       }
+                      section.appendChild(rate_b)
+
+                      article.appendChild(section)
+                      result.appendChild(article)
+                      container.appendChild(result)
                   })
                   res_pos.appendChild(container)
+                  new Hilitor("container").apply(document.querySelector("#q").value)
               })
       }
       </script>
@@ -160,25 +165,7 @@
       </select>
       <input id="q" onkeypress="return search()" onchange="search()">
     </div>
-    <button type="button" id="hli">HighLight!</button>
     <div id="result">
     </div>
   </body>
-  <script>
-    var hli = document.getElementById("hli");
-    var tag = true;
-    hli.onclick = function(){
-      if (tag == true) {
-        var myHilitor = new Hilitor("container"); // id of the element to parse
-        var hl = document.getElementById("q").value
-        myHilitor.apply(hl);
-      }
-      else {
-        var myHilitor = new Hilitor("container");
-        myHilitor.remove();
-      }
-      tag = !tag;
-    }
-  </script>
 </html>
-
