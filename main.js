@@ -13,14 +13,14 @@ window.onload = () => {
 
 function search() {
     const res_pos = document.querySelector("#result")
-    const url = new URL("http://localhost:8080/q")
-    url.search = new URLSearchParams({key: document.querySelector("#q").value, filter: document.querySelector("select").value})
-    fetch(url, {credentials: "same-origin"})
-        .then((response) => {
-            res_pos.innerText = "Loading..."
-            return response.json()
-        })
-        .then((data) => {
+    axios.get("http://localhost:8080/q", {
+        withCredentials: true,
+        params: {
+            key:    document.querySelector("#q").value,
+            filter: document.querySelector("#filter").value
+        }})
+        .then(res => {
+            data = res.data
             console.log(data)
             res_pos.innerText = ""
 
