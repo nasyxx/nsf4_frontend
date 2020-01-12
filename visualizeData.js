@@ -38,6 +38,22 @@ option = {
     },
     brush: {
     },
+    dataZoom: [
+        {
+            type: 'slider',
+            xAxisIndex: 0,
+            start: 0,
+            end: 100
+        },
+
+        {
+            type: 'slider',
+            yAxisIndex: 0,
+            start: 0,
+            end: 100
+        },
+
+    ],
     xAxis: [
         {
             type: 'value',
@@ -67,6 +83,44 @@ option = {
             name: 'question',
             type: 'scatter',
             data: dd,
+            itemStyle: {
+                color: function(params){
+                    let color;
+                    switch(params.value[3]){
+                        case 0:
+                            color = "yellow";
+                            break;
+                        case 1:
+                            color = "green";
+                            break;
+                        case 2:
+                            color = "blue";
+                            break;
+                        case 3:
+                            color = "orange";
+                            break;
+                        case 4:
+                            color = "grey";
+                            break;
+                        case 5:
+                            color = "red";
+                            break;
+                        case 6:
+                            color = "Aquamarine";
+                            break;
+                        case 7:
+                            color = "purple";
+                            break;
+                        case 8:
+                            color = "fuchsia";
+                            break;
+                        case 9:
+                            color = "maroon";
+                            break;
+                    }
+                    return color;
+                }
+            },
             markArea: {
                 silent: true,
                 itemStyle: {
@@ -83,6 +137,7 @@ option = {
                     yAxis: 'max'
                 }]]
             },
+
             markPoint: {
                 data: [
                     {type: 'max', name: 'maxValue'},
@@ -98,3 +153,8 @@ option = {
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
 }
+myChart.on('click', function (params) {
+    let chartData =  params.value[2];
+    document.getElementById('q').value = chartData;
+    search();
+});
