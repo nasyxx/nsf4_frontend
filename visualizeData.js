@@ -144,13 +144,18 @@ option = {
         },
 
     ]
-};
-;
-if (option && typeof option === "object") {
-    myChart.setOption(option, true);
 }
-myChart.on('click', function (params) {
-    let chartData =  params.value[2];
-    document.getElementById('q').value = chartData;
-    search();
-});
+
+function load_visualize (){
+    const dom = document.getElementById("chart")
+    const myChart = echarts.init(dom)
+
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true)
+    }
+    myChart.on('click', function (params) {
+        let chartData =  params.value[2]
+        document.getElementById('q').value = chartData
+        search()
+    })
+}
