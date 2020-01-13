@@ -1,40 +1,9 @@
 <html>
   <head>
     <title>Search</title>
-    <script>
-      function search() {
-          const res_pos = document.querySelector("#result")
-          const url = new URL("http://localhost:8080/q")
-          url.search = new URLSearchParams({key: document.querySelector("#q").value, filter: document.querySelector("select").value})
-          fetch(url)
-              .then((response) => {
-                  res_pos.innerText = "Loading..."
-                  return response.json()
-              })
-              .then((data) => {
-                  console.log(data)
-                  res_pos.innerText = ""
-
-                  const summary = document.createElement("header")
-                  summary.innerHTML = "Total: " + data.total + "<br />Filtered: " + data.results.length
-
-                  res_pos.appendChild(summary)
-
-                  const container = document.createElement("div")
-                  data.results.forEach(hit => {
-                      const r = document.createElement("div")
-                      const h = document.createElement("header")
-                      const a = document.createElement("article")
-                      h.innerText = hit._source.title
-                      a.innerText = hit._source.content
-                      r.appendChild(h)
-                      r.appendChild(a)
-                      container.appendChild(r)
-                  })
-                  res_pos.appendChild(container)
-              })
-      }
-      </script>
+    <script src="axios.min.js"></script>
+    <script type="text/javascript" src="hilitor.js"></script>
+    <script type="text/javascript" src="main.js"></script>
     <style>
       * {
           transition: all 0.5s ease-out;
@@ -62,6 +31,11 @@
       #inp > * {
           margin: 10px 0;
       }
+      #hli{
+        font-size: 1rem;
+        font-family: Optima;
+      }
+
       select, input {
           height: 2rem;
           font-size: 1rem;
@@ -72,6 +46,44 @@
           border-radius: 3px;
           padding: 10px;
       }
+      select:hover, input:hover {
+          background-color: #eee;
+          box-shadow: 0 1px 3px #666;
+      }
+
+      article {
+          display: flex;
+          flex-flow: column;
+          align-items: flex-start;
+      }
+
+      section {
+          display: flex;
+          border-bottom: 2px solid black;
+      }
+
+      button {
+          font-size: 1rem;
+          font-family: Optima;
+          border: none;
+      }
+
+      .rate {
+          display: flex;
+          align-items: center;
+          padding: 0 5px;
+          margin: 0 5px;
+          box-shadow: none;
+      }
+      .rate:first-child {
+          padding-left: 0;
+          margin-left: 0;
+      }
+      .rate-c:hover {
+          background-color: #eee;
+          box-shadow: 0 1px 3px #666;
+      }
+
       #result > header {
           margin: 10px 0;
           box-shadow: 0 1px 3px #666;
@@ -94,13 +106,17 @@
           background: #eee;
           padding: 5px 5px;
       }
+      #result > div > div > header > h2 {
+          font-size: 1rem;
+          margin: 0;
+      }
       #result > div > div > article {
           padding: 5px 10px;
       }
     </style>
   </head>
   <body>
-    <h1>Search</h1>
+    <h1>Question & Answer</h1>
     <div id="inp">
       <select onchange="search()">
         <option value="">No Filter</option>
