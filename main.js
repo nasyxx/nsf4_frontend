@@ -13,14 +13,14 @@ window.onload = () => {
 
 function search() {
     const res_pos = document.querySelector("#result")
-    const url = new URL("http://localhost:8080/q")
-    url.search = new URLSearchParams({key: document.querySelector("#q").value, filter: document.querySelector("select").value})
-    fetch(url, {credentials: "same-origin"})
-        .then((response) => {
-            res_pos.innerText = "Loading..."
-            return response.json()
-        })
-        .then((data) => {
+    axios.get("http://localhost:8080/q", {
+        withCredentials: true,
+        params: {
+            key:    document.querySelector("#q").value,
+            filter: document.querySelector("#filter").value
+        }})
+        .then(res => {
+            data = res.data
             console.log(data)
             res_pos.innerText = ""
 
@@ -65,22 +65,25 @@ function search() {
                     o.innerText = value
                     select.appendChild(o)
                 })
+                select.value = hit.rate || 0
                 section.appendChild(select)
 
                 const rate_b = document.createElement("button")
-                rate_b.id = "submit-rate"
+                rate_b.id = "submit-rate-" + iv
                 rate_b.classList.add("rate")
                 rate_b.classList.add("rate-c")
                 rate_b.innerText = "Submit"
-                rate_b.onclick = function(e){
-                    targetNow = e.target
-                    header = targetNow.parentNode.children[0]
-                    article = targetNow.parentNode.children[1]
-                    relevance = targetNow.parentNode.children[3].value
-                    console.log(header)
-                    console.log(article)
-                    console.log(relevance)
-                }
+                rate_b.addEventListener("click", () => {
+                    axios.post("http://localhost:8080/rate", {
+                        query: document.querySelector("#q").value,
+                        ans: hit, rate: parseInt(select.value)
+                    }, {withCredentials: true})
+                        .then(res => {
+                            if (res.status == 1) {
+                                throw "Error"
+                            }})
+                        .catch(e => console.log(e.response))
+                })
                 section.appendChild(rate_b)
 
                 article.appendChild(section)
