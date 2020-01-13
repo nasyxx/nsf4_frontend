@@ -15,7 +15,7 @@ function search() {
     axios.get("http://localhost:8080/q", {
         withCredentials: true,
         params: {
-            key:    document.querySelector("#q").value,
+            key:    document.querySelector("#q").value.trim(),
             filter: document.querySelector("#filter").value
         }})
         .then(res => {
