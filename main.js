@@ -2,8 +2,7 @@ function get_user(){
     return document.cookie.match(new RegExp("(^| )who=([^;]+)"))[2]
 }
 
-
-window.onload = () => {
+function init_cookie(){
     axios.get("http://localhost:8080", {withCredentials: true})
         .then(res => {
             console.log("user: " + get_user())
@@ -93,4 +92,9 @@ function search() {
             res_pos.appendChild(container)
             new Hilitor("container").apply(document.querySelector("#q").value)
         })
+}
+
+window.onload = () => {
+    init_cookie()
+    load_visualize()
 }
