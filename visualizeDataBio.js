@@ -1,6 +1,6 @@
 option = {
     title: {
-        text: 'Question category visualize',
+        text: 'Question category visualize(Bio)',
         subtext: 'From Wenbo',
         left: 'center'
     },
@@ -78,7 +78,7 @@ option = {
         {
             name: 'question',
             type: 'scatter',
-            data: dd,
+            data: dd ,
             itemStyle: {
                 color: function(params){
                     let color
