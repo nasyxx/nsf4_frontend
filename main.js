@@ -24,7 +24,13 @@ function search() {
             res_pos.innerText = ""
 
             const summary = document.createElement("header")
-            summary.innerHTML = "Total: " + data.total + "<br />Filtered: " + data.results.length
+            var total = 0
+            if (typeof(data.total) == "number"){
+                total = data.total
+            } else {
+                total = data.total.value
+            }
+            summary.innerHTML = "Total: " + total + "<br />Filtered: " + data.results.length
 
             res_pos.appendChild(summary)
 
