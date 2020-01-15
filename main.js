@@ -28,7 +28,7 @@ function search() {
             if (typeof(data.total) == "number"){
                 total = data.total
             } else {
-                total = data.total.value
+                total = "Greater than " + data.total.value
             }
             summary.innerHTML = "Total: " + total + "<br />Filtered: " + data.results.length
 
