@@ -37,9 +37,9 @@ var layerVetor = new ol.layer.Vector({
                     anchorYUnits: 'pixels',
                     offsetOrigin: 'top-right',
                     offset: [0, 1],
-                    scale: 0.05,
+                    scale: 0.1,
                     opacity: 0.75,
-                    src: 'map_data/marker.png'
+                    src: 'map_data/circlemarker.png'
                 })),
                 text: new ol.style.Text({
                     text: size.toString(),
