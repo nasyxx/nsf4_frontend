@@ -1,9 +1,9 @@
-var l = bio_data.length;
+var l = data.length;
 var features = new Array( l );
 for (let i = 0; i < l; i++) {
-    let coordinates = ol.proj.transform([parseFloat(bio_data[i].lon), parseFloat(bio_data[i].lat)],'EPSG:4326', 'EPSG:3857')
+    let coordinates = ol.proj.transform([parseFloat(data[i].lon), parseFloat(data[i].lat)],'EPSG:4326', 'EPSG:3857')
     let attr = {
-        attribute: bio_data[i].article
+        attribute: data[i].article
     };
     features[i] = new ol.Feature({
         geometry: new ol.geom.Point(coordinates),
@@ -37,7 +37,7 @@ var layerVetor = new ol.layer.Vector({
                     anchorYUnits: 'pixels',
                     offsetOrigin: 'top-right',
                     offset: [0, 1],
-                    scale: 0.1,
+                    scale: 0.05,
                     opacity: 0.75,
                     src: 'map_data/marker.png'
                 })),
