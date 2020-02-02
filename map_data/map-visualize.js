@@ -1,4 +1,4 @@
-let map_features
+
 function load_map(geo_data) {
 
     var l = geo_data.length;
@@ -12,20 +12,11 @@ function load_map(geo_data) {
             geometry: new ol.geom.Point(coordinates),
             attribute: attr,
         })
+
     }
-    map_features = features
-}
-function map_visualize(){
-
-        if (document.getElementById("select_map").value == "water_map"){
-            load_map(bio_data)
-        }else if (document.getElementById("select_map").value == "bio_map"){
-            load_map(data)
-        }
-
 
     let source = new ol.source.Vector({
-        features: map_features
+        features: features
     });
 
     let clusterSource = new ol.source.Cluster({
