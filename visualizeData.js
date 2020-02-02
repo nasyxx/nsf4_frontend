@@ -4,7 +4,7 @@ function read_data(question_data) {
     let ll = question_data.length
 
     for (let i = 0; i < ll; i++) {
-        let d = [question_data[i].x, question_data[i].y, question_data[i].question, question_data[i].catagory];
+        let d = [question_data[i].x, question_data[i].y, question_data[i].question, question_data[i].catagory,question_data[i].source];
         dd.push(d);
         domain_question= dd
     }
@@ -35,10 +35,9 @@ function load_visualize (){
             // trigger: 'axis',
             showDelay: 0,
             formatter: function (params) {
-                return params.seriesName + ' :<br/>'
-                    + params.value[2] + ' ?<br/>'
+                return '<div>' + params.seriesName + ' :<br/>' + params.value[2] + ' ?<br/>'
                     + 'x: ' + params.value[0]  + ' ' + 'y: ' + params.value[1] + '<br/>'
-                    + 'category number: ' + params.value[3]
+                    + 'category number: ' + params.value[3] + '<br/>' + 'source: ' + params.value[4] +'</div>'
 
             },
             axisPointer: {
@@ -105,7 +104,26 @@ function load_visualize (){
                 name: 'question',
                 type: 'scatter',
                 data: domain_question,
-                symbol:'roundRect',
+                symbol: function (domain_question,params) {
+                    let symbol
+                    switch (params.value[4]){
+                        case 'wq':
+                            symbol = 'roundRect'
+                            break
+                        case 'nio':
+                            symbol = 'circle'
+                            break
+                        case 'bio':
+                            symbol = 'pin'
+                            break
+                        case 'gis':
+                            symbol = 'triangle'
+                            break
+
+                    }
+                    return symbol
+
+                },
                 itemStyle: {
                     color: function(params){
                         let color
