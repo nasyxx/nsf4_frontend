@@ -102,7 +102,7 @@ function search() {
 
 window.onload = () => {
     init_cookie()
-
+    load_visualize()
 }
 
 const Open_newPage = () =>{

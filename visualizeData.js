@@ -26,7 +26,7 @@ function load_visualize (){
 
     option = {
         title: {
-            text: 'Question category visualize',
+            text: 'Question category(color) visualize',
             subtext: '',
             left: 'center'
         },
@@ -35,9 +35,9 @@ function load_visualize (){
             // trigger: 'axis',
             showDelay: 0,
             formatter: function (params) {
-                return '<div>' + params.seriesName + ' :<br/>' + params.value[2] + ' ?<br/>'
-                    + 'x: ' + params.value[0]  + ' ' + 'y: ' + params.value[1] + '<br/>'
-                    + 'category number: ' + params.value[3] + '<br/>' + 'source: ' + params.value[4] +'</div>'
+
+                return '<div class="tool_div">' + params.seriesName + ' :<br/>' + params.value[2] + ' ?<br/>'
+                    + 'category number: ' + params.value[3] + '<br/>' + 'source: ' + params.value[4]+'</div>'
 
             },
             axisPointer: {
@@ -108,9 +108,9 @@ function load_visualize (){
                     let symbol
                     switch (params.value[4]){
                         case 'wq':
-                            symbol = 'roundRect'
+                            symbol = 'rect'
                             break
-                        case 'nio':
+                        case 'fire':
                             symbol = 'circle'
                             break
                         case 'bio':
@@ -170,7 +170,7 @@ function load_visualize (){
                         borderType: 'dashed'
                     },
                     data: [[{
-                        name: 'Question category',
+                        name: 'Triangle: gis; Rect: wq; Circle: fire; Pin: bio',
                         xAxis: 'min',
                         yAxis: 'min'
                     }, {
