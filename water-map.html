@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Map</title>
+    <script src="map_data/water_geo.js"></script>
+    <script src="libs/v6.1.1-dist/ol.js"></script>
+    <script src="map_data/map-visualize.js"></script>
+    <script>
+        window.onload = ()=>{
+            load_map(data)
+        }
+    </script>
     <link rel="stylesheet" href="libs/v6.1.1-dist/ol.css">
     <style type="text/css">
         .map {
@@ -87,9 +95,6 @@
 </div>
 
 
-<script src="map_data/water_geo.js"></script>
-<script src="libs/v6.1.1-dist/ol.js"></script>
-<script src="map_data/map-water.js"></script>
 
 
 </body>

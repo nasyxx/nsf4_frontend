@@ -1,11 +1,12 @@
-let dd = [];
-
+let domain_question
 function read_data(question_data) {
+    let dd = []
     let ll = question_data.length
 
     for (let i = 0; i < ll; i++) {
         let d = [question_data[i].x, question_data[i].y, question_data[i].question, question_data[i].catagory];
         dd.push(d);
+        domain_question= dd
     }
 
 }
@@ -13,9 +14,16 @@ function read_data(question_data) {
 
 
 function load_visualize (){
-    if (document.getElementById("Choose_question").value === "Wq") {
-        read_data(tttt)
+    if (document.getElementById("Domain").value === "wqb") {
+        read_data(bert)
+    }else if (document.getElementById("Domain").value === "adqb"){
+        read_data(bow)
+    }else if(document.getElementById("Domain").value === "wqg"){
+        read_data(glove)
+    }else if(document.getElementById("Domain").value === "adqt"){
+        read_data(tfidf)
     }
+
     option = {
         title: {
             text: 'Question category visualize',
@@ -96,7 +104,8 @@ function load_visualize (){
             {
                 name: 'question',
                 type: 'scatter',
-                data: dd,
+                data: domain_question,
+                symbol:'roundRect',
                 itemStyle: {
                     color: function(params){
                         let color

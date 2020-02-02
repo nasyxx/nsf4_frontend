@@ -1,21 +1,31 @@
+let map_features
+function load_map(geo_data) {
 
-function load_map() {
-
-    var l = data.length;
-    var features = new Array( l );
+    var l = geo_data.length;
+    var features = new Array(l);
     for (let i = 0; i < l; i++) {
-        let coordinates = ol.proj.transform([parseFloat(data[i].lon), parseFloat(data[i].lat)],'EPSG:4326', 'EPSG:3857')
+        let coordinates = ol.proj.transform([parseFloat(geo_data[i].lon), parseFloat(geo_data[i].lat)], 'EPSG:4326', 'EPSG:3857')
         let attr = {
-            attribute: data[i].article
+            attribute: geo_data[i].article
         };
         features[i] = new ol.Feature({
             geometry: new ol.geom.Point(coordinates),
             attribute: attr,
         })
-
     }
+    map_features = features
+}
+function map_visualize(){
+
+        if (document.getElementById("select_map").value == "water_map"){
+            load_map(bio_data)
+        }else if (document.getElementById("select_map").value == "bio_map"){
+            load_map(data)
+        }
+
+
     let source = new ol.source.Vector({
-        features: features
+        features: map_features
     });
 
     let clusterSource = new ol.source.Cluster({
@@ -76,7 +86,6 @@ function load_map() {
     map.addLayer(layerVetor);
 
 
-
     var container = document.getElementById('popup');
     var content = document.getElementById('popup-content');
     var closer = document.getElementById('popup-closer');
@@ -119,6 +128,7 @@ function load_map() {
             element.innerText = text;
         }
     }
+
     layerVetor.on('click', function (evt) {
         var geometry = evt.Feature;
         console.log(geometry);
@@ -127,7 +137,9 @@ function load_map() {
     map.on('click', function (evt) {
         var coordinate = evt.coordinate;
 
-        var feature = map.forEachFeatureAtPixel(evt.pixel, function (feature, layerVetor) { return feature; });
+        var feature = map.forEachFeatureAtPixel(evt.pixel, function (feature, layerVetor) {
+            return feature;
+        });
         var featuerInfo = feature.getProperties().features[0].values_.attribute.attribute;
         if (feature) {
             content.innerHTML = '';

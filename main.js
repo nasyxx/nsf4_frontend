@@ -102,7 +102,6 @@ function search() {
 
 window.onload = () => {
     init_cookie()
-    load_map()
 
 }
 

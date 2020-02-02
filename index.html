@@ -5,10 +5,18 @@
     <script type="text/javascript" src="hilitor.js"></script>
     <script type="text/javascript" src="echarts.min.js"></script>
 
-    <script type="text/javascript" src="questions.js"></script>
+    <script type="text/javascript" src="questions/questions_bert.js"></script>
+    <script type="text/javascript" src="questions/questions_bow.js"></script>
+    <script type="text/javascript" src="questions/questions_glove.js"></script>
+    <script type="text/javascript" src="questions/questions_tfidf.js"></script>
+
 
     <script type="text/javascript" src="visualizeData.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    <script src="map_data/water_geo.js"></script>
+    <script src="map_data/bioData_geo.js"></script>
+    <script src="libs/v6.1.1-dist/ol.js"></script>
+    <script src="map_data/map-visualize.js"></script>
     <link rel="stylesheet" href="libs/v6.1.1-dist/ol.css">
     <style>
       * {
@@ -221,10 +229,12 @@
     </style>
   </head>
   <body>
-  <script src="map_data/water_geo.js"></script>
-  <script src="libs/v6.1.1-dist/ol.js"></script>
-  <script src="map_data/map-water.js"></script>
     <h1>Question & Answer</h1>
+    <select id ="select_map" onchange="map_visualize()">
+      <option value="">Choose map</option>
+      <option value="water_map">Water Quality Map</option>
+      <option value="bio_map">Bio Diversity Map</option>
+    </select>
     <div id ="js-map" class="map">
     <!-- Popup -->
     <div id="popup" class="ol-popup">
@@ -244,11 +254,13 @@
       <input id="q" onkeypress="return search()" onchange="search()" placeholder="search text">
     </div>
   <div>
-   <select id="Choose_question" class="Domain_question" onchange="load_visualize()">
-     <option value="">Select the question</option>
-     <option value="Wq"> Water Quality Question</option>
-     <option value="Bio">Bio Diversity Question</option>
-   </select>
+    <select id="Domain" class="Domain_question"  onchange="load_visualize()">
+      <option value="">Choose</option>
+      <option value="wqb"> Water Quality(Bert)</option>
+      <option value="wqg">Water Quality(Glove)</option>
+      <option value="adqb">All Domain Questions(Bow)</option>
+      <option value="adqt">All Domain Questions(TFIDF)</option>
+    </select>
   </div>
     <div id="chart" ></div>
     <div id="result">
