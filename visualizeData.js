@@ -27,7 +27,7 @@ function load_visualize (){
     option = {
         title: {
             text: 'Question category visualize',
-            subtext: '',
+            subtext: 'From NJIT Team',
             left: 'center'
         },
 
