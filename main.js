@@ -19,25 +19,25 @@ function search() {
             filter: document.querySelector("#filter").value
         }})
         .then(res => {
-            data = res.data
-            console.log(data)
+            res_data = res.data
+            console.log(res_data)
             res_pos.innerText = ""
 
             const summary = document.createElement("header")
             var total = 0
-            if (typeof(data.total) == "number"){
-                total = data.total
+            if (typeof(res_data.total) == "number"){
+                total = res_data.total
             } else {
-                total = "Greater than " + data.total.value
+                total = "Greater than " + res_data.total.value
             }
-            summary.innerHTML = "Total: " + total + "<br />Filtered: " + data.results.length
+            summary.innerHTML = "Total: " + total + "<br />Filtered: " + res_data.results.length
 
             res_pos.appendChild(summary)
 
 
             const container = document.createElement("div")
 
-            data.results.map((hit, iv) => {
+            res_data.results.map((hit, iv) => {
                 const result = document.createElement("div")
 
                 // Header
