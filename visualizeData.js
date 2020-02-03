@@ -36,7 +36,7 @@ function load_visualize (){
             showDelay: 0,
             formatter: function (params) {
 
-                return '<div class="tool_div">' + params.seriesName + ' :<br/>' + params.value[2] + ' ?<br/>'
+                return '<div class="tool_div">' + params.seriesName + ' :<br/>' + params.value[2] + '<br/>'
                     + 'category number: ' + params.value[3] + '<br/>' + 'source: ' + params.value[4]+'</div>'
 
             },
