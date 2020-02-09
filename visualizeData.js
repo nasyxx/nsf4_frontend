@@ -24,10 +24,10 @@ function load_visualize (){
         read_data(tfidf)
     }
 
-    option = {
+    let option = {
         title: {
             text: 'Question category(color) visualize',
-            subtext: '',
+            subtext: 'FROM NJIT TEAM',
             left: 'center'
         },
 
@@ -37,9 +37,10 @@ function load_visualize (){
             formatter: function (params) {
 
                 return '<div class="tool_div">' + params.seriesName + ' :<br/>' + params.value[2] + '<br/>'
-                    + 'category number: ' + params.value[3] + '<br/>' + 'source: ' + params.value[4]+'</div>'
+                    + 'category number: ' + params.value[3] + '<br/>' + 'source: ' + params.value[4] + '</div>'
 
             },
+
             axisPointer: {
                 show: true,
                 type: 'cross',
@@ -57,8 +58,7 @@ function load_visualize (){
                 }
             }
         },
-        brush: {
-        },
+        brush: {},
         dataZoom: [
             {
                 type: 'slider',
@@ -75,6 +75,7 @@ function load_visualize (){
             },
 
         ],
+
         xAxis: [
             {
                 type: 'value',
@@ -104,9 +105,9 @@ function load_visualize (){
                 name: 'question',
                 type: 'scatter',
                 data: domain_question,
-                symbol: function (domain_question,params) {
+                symbol: function (domain_question, params) {
                     let symbol
-                    switch (params.value[4]){
+                    switch (params.value[4]) {
                         case 'wq':
                             symbol = 'rect'
                             break
@@ -114,7 +115,7 @@ function load_visualize (){
                             symbol = 'circle'
                             break
                         case 'bio':
-                            symbol = 'pin'
+                            symbol = 'arrow'
                             break
                         case 'gis':
                             symbol = 'triangle'
@@ -125,11 +126,11 @@ function load_visualize (){
 
                 },
                 itemStyle: {
-                    color: function(params){
+                    color: function (params) {
                         let color
-                        switch(params.value[3]){
+                        switch (params.value[3]) {
                             case 0:
-                                color = "yellow"
+                                color = "black"
                                 break
                             case 1:
                                 color = "green"
@@ -162,6 +163,7 @@ function load_visualize (){
                         return color
                     }
                 },
+
                 markArea: {
                     silent: true,
                     itemStyle: {
@@ -170,7 +172,7 @@ function load_visualize (){
                         borderType: 'dashed'
                     },
                     data: [[{
-                        name: 'Triangle: gis; Rect: wq; Circle: fire; Pin: bio',
+                        name: '',
                         xAxis: 'min',
                         yAxis: 'min'
                     }, {
