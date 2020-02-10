@@ -54,7 +54,10 @@ function search() {
                 // Header
                 const h    = document.createElement("header")
                 const h_h2 = document.createElement("h2")
-                h_h2.innerText = hit._source.title
+                const h_h2_a = document.createElement("a")
+                h_h2_a.innerText = hit._source.title
+                h_h2_a.href = "http://localhost:8764/" + hit._source.path
+                h_h2.appendChild(h_h2_a)
                 h.appendChild(h_h2)
                 result.appendChild(h)
 
