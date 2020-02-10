@@ -17,6 +17,7 @@ function check_stop_word(){
     }else if (document.getElementById("s_close").checked === true){
         return stop_value = true
     }
+    search()
 }
 
 
