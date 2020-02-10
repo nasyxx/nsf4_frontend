@@ -1,4 +1,4 @@
-let bio_data
+let bio_question
 let wq_data
 let fire_data
 let gis_data
@@ -25,7 +25,7 @@ function read_data(question_data) {
                 b_gis.push(d)
                 break
         }
-        bio_data = b_bio
+        bio_question = b_bio
         wq_data = b_wq
         fire_data = b_fire
         gis_data = b_gis
@@ -219,7 +219,7 @@ function load_visualize (){
             },{
                 name: 'BIO',
                 type: 'scatter',
-                data: bio_data,
+                data: bio_question,
                 symbol: 'diamond',
                 itemStyle: {
                     color: function (params) {

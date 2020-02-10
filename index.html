@@ -4,13 +4,10 @@
     <script src="axios.min.js"></script>
     <script type="text/javascript" src="hilitor.js"></script>
     <script type="text/javascript" src="echarts.min.js"></script>
-
     <script type="text/javascript" src="questions/questions_bert.js"></script>
     <script type="text/javascript" src="questions/questions_bow.js"></script>
     <script type="text/javascript" src="questions/questions_glove.js"></script>
     <script type="text/javascript" src="questions/questions_tfidf.js"></script>
-
-
     <script type="text/javascript" src="visualizeData.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script src="map_data/water_geo.js"></script>
@@ -193,6 +190,41 @@
         float:left;
         margin-left: 30px;
       }
+      .for_stop_word input{
+        display: none;
+        margin-top: 10px;
+      }
+      .for_stop_word label{
+        box-sizing: border-box;
+        position: relative;
+        margin-right: 34px;
+        margin-top: 10px;
+      }
+      .for_stop_word label::before{
+        display: inline-block;
+        content: "";
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid rgb(219, 219, 219);
+        margin-right: 6px;
+        vertical-align: bottom;
+      }
+      .for_stop_word input:checked+label::before{
+        border: 1px solid #fff;
+        background-color: #fff;
+      }
+      .for_stop_word input:checked+label::after{
+        display: inline-block;
+        content: "";
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: #66B3FF;
+      }
 
 
 
@@ -225,6 +257,12 @@
       </select>
       <input id="q" onkeypress="return search()" onchange="search()" placeholder="search text">
     </div>
+    <form  class="for_stop_word"  onclick="check_stop_word()">
+      <input type="radio" name="sw" id="s_open" value="open" checked="true" class="stop_word" >
+      <label for="s_open">Open stop word</label>
+      <input type="radio" name="sw" id="s_close" value="close" class="stop_word" >
+      <label for="s_close">Close stop word</label>
+    </form>
   <div class="question_option">
     <label for="Domain">Choose Model: </label>
     <select id="Domain"  onchange="load_visualize()">

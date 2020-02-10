@@ -1,3 +1,4 @@
+
 function get_user(){
     return document.cookie.match(new RegExp("(^| )who=([^;]+)"))[2]
 }
@@ -8,6 +9,15 @@ function init_cookie(){
             console.log("user: " + get_user())
         })
 }
+let stop_value
+function check_stop_word(){
+
+    if (document.getElementById("s_open").checked === true){
+        return stop_value = false
+    }else if (document.getElementById("s_close").checked === true){
+        return stop_value = true
+    }
+}
 
 
 function search() {
@@ -16,7 +26,8 @@ function search() {
         withCredentials: true,
         params: {
             key:    document.querySelector("#q").value,
-            filter: document.querySelector("#filter").value
+            filter: document.querySelector("#filter").value,
+            nsw:  stop_value
         }})
         .then(res => {
             res_data = res.data
@@ -103,6 +114,7 @@ function search() {
 window.onload = () => {
     init_cookie()
     load_visualize()
+
 }
 
 const Open_newPage = () =>{
