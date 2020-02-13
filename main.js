@@ -1,3 +1,4 @@
+
 function get_user(){
     return document.cookie.match(new RegExp("(^| )who=([^;]+)"))[2]
 }
@@ -8,7 +9,7 @@ function init_cookie(){
             console.log("user: " + get_user())
         })
 }
-let stop_value
+let stop_value = true
 function check_stop_word(){
 
     if (document.getElementById("s_open").checked === true){
@@ -110,7 +111,7 @@ function search() {
                 container.appendChild(result)
             })
             res_pos.appendChild(container)
-            new Hilitor("container").apply(res_data.query)
+            new Hilitor("container").apply(document.querySelector("#q").value)
         })
 }
 
