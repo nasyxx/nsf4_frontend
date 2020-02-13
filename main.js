@@ -1,4 +1,3 @@
-
 function get_user(){
     return document.cookie.match(new RegExp("(^| )who=([^;]+)"))[2]
 }
@@ -111,7 +110,7 @@ function search() {
                 container.appendChild(result)
             })
             res_pos.appendChild(container)
-            new Hilitor("container").apply(document.querySelector("#q").value)
+            new Hilitor("container").apply(res_data.query)
         })
 }
 
