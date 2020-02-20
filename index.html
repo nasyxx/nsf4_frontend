@@ -226,7 +226,9 @@
         background-color: #66B3FF;
       }
 
-
+      .for_stop_word{
+        display: none;
+      }
 
 
     </style>
@@ -257,7 +259,7 @@
       </select>
       <input id="q" onkeypress="return search()" onchange="search()" placeholder="search text">
     </div>
-    <form  class="for_stop_word"  onclick="check_stop_word()">
+    <form  class="for_stop_word"  onclick="check_stop_word()" >
       <input type="radio" name="sw" id="s_close"  checked="true" class="stop_word" >
       <label for="s_close">Without stop word</label>
       <input type="radio" name="sw" id="s_open"   class="stop_word" >
