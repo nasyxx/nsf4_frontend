@@ -99,7 +99,8 @@ function search(qualifiedName, value) {
 
             res_data.results.map((hit, iv) => {
                 const result = document.createElement("div")
-                result.setAttribute('data-aos','"fade-up"')
+                result.setAttribute("data-aos", "fade-up")
+                result.setAttribute("data-aos-anchor-placemen", "center-bottom")
                 // Header
                 const h    = document.createElement("header")
                 const h_h2 = document.createElement("h2")
@@ -168,9 +169,6 @@ function search(qualifiedName, value) {
 window.onload = () => {
     init_cookie()
     load_visualize()
-    AOS.init({
-        delay: 1000,
-    });
 
 }
 
