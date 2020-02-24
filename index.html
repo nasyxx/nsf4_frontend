@@ -35,7 +35,15 @@
       }
       h1 {
           font-family: cursive;
+
       }
+      .top_box{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 1px #333333;
+      }
+
       .hide {
           display: none;
       }
@@ -157,20 +165,20 @@
       .question_option{
         display: flex;
         align-items: center;
-        padding: 0px;
-        margin: 0 ;
-        box-shadow: none;
+        justify-content: flex-start ;
+        /*padding: 0px;*/
+        /*margin: 0 ;*/
+        /*box-shadow: none;*/
       }
       #Domain{
-        margin-left: 10px;
+        margin-left: 15px;
       }
       #download{
-        padding-left: 5px;
-        margin-left: 10px;
+        margin-left: 15px;
       }
       #download_button{
-        padding-left: 10px;
-        margin-left: 10px;
+        margin-left: 15px;
+        padding-top: 6px;
       }
       .tool_div{
         white-space:normal;
@@ -178,18 +186,8 @@
         width: 15em;
         height: auto;
       }
-      .choose_map ul{
-        margin:0;
-        padding:0;
-      }
-      .choose_map li:first-child{
-        float:left;
-        margin-left: 15px;
-      }
-      .choose_map li:nth-child(2){
-        float:left;
-        margin-left: 30px;
-      }
+
+
       .for_stop_word input{
         display: none;
         margin-top: 10px;
@@ -234,19 +232,40 @@
     </style>
   </head>
   <body>
-    <h1>Question & Answer</h1>
-    <div class = 'choose_map'>
-       <ul>
-         <li><a href="bio-map.html" target="_blank">Map Bio Data</a></li>
-         <li><a href="water-map.html" target="_blank">Map Water_quality Data</a></li>
-       </ul>
-    </div>
+    <dix class = 'top_box'>
+      <h1>Question & Answer</h1>
+      <div class = 'choose_map'>
+        <ul>
+          <li><a href="bio-map.html" target="_blank">Map Bio Data</a></li>
+          <li><a href="water-map.html" target="_blank">Map Water_quality Data</a></li>
+        </ul>
+      </div>
+    </dix>
+
     <!--<div id ="js-map" class="map">-->
     <!-- Popup -->
     <div id="popup" class="ol-popup">
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
     </div>
+    </div>
+    <div id="chart" ></div>
+    <div class="question_option">
+      <label for="Domain">Choose Model: </label>
+      <select id="Domain"  onchange="load_visualize()">
+        <option value="adqb">All Questions(Bow)</option>
+        <option value="wqb"> All Questions(Bert)</option>
+        <option value="wqg">All Questions(Glove)</option>
+        <option value="adqt">All Questions(TFIDF)</option>
+      </select>
+      <select id="download" >
+        <option value="">Download File</option>
+        <option value="bert">Bert</option>
+        <option value="glove">Glove</option>
+        <option value="bow">Bow</option>
+        <option value="tfidf">TFIDF</option>
+      </select>
+      <input type="submit" onclick="download_file()" value="Download" id ='download_button'>
     </div>
     <div id="inp">
       <select id="filter" onchange="search()", class="hide">
@@ -265,25 +284,7 @@
       <input type="radio" name="sw" id="s_open"   class="stop_word" >
       <label for="s_open">With stop word</label>
     </form>
-  <div class="question_option">
-    <label for="Domain">Choose Model: </label>
-    <select id="Domain"  onchange="load_visualize()">
-      <option value="adqb">All Questions(Bow)</option>
-      <option value="wqb"> All Questions(Bert)</option>
-      <option value="wqg">All Questions(Glove)</option>
-      <option value="adqt">All Questions(TFIDF)</option>
-    </select>
-    <select id="download" >
-      <option value="">Download File</option>
-      <option value="bert">Bert</option>
-      <option value="glove">Glove</option>
-      <option value="bow">Bow</option>
-      <option value="tfidf">TFIDF</option>
-    </select>
-    <input type="submit" onclick="download_file()" value="Download" id ='download_button'>
-  </div>
-    <div id="chart" ></div>
-    <div id="result">
+    <div id="result" >
     </div>
     <div id="up"><a href="#">^</a></div>
   </body>
