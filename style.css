@@ -1,6 +1,11 @@
 * {
-    transition: all 0.5s ease-out;
+    transition: all 0.2s ease-in-out;
 }
+
+*:hover {
+    transition: all 0.2s ease-in-out;
+}
+
 html {
     background-color: #333;
     font-family: Optima;
@@ -23,14 +28,16 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 1px #333333;
 }
 
 .hide {
     display: none;
 }
 #chart {
-    height: 75vh;
+    height: 80vw;
+    max-height: 660px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px #33333333;
 }
 #inp {
     display: flex;
@@ -67,6 +74,9 @@ article {
 
 section {
     display: flex;
+}
+
+section.bb {
     border-bottom: 2px solid black;
 }
 
@@ -92,6 +102,11 @@ button {
     box-shadow: 0 1px 3px #666;
 }
 
+#result {
+    display: flex;
+    flex-flow: column;
+}
+
 #result > header {
     margin: 10px 0;
     box-shadow: 0 1px 3px #666;
@@ -102,10 +117,9 @@ button {
     box-shadow: 0 1px 7px #666;
 }
 #result > div > div {
-    box-shadow: 0 1px 3px #333;
+    box-shadow: 0 0 10px #33333333;
     padding: 5px 0;
     margin: 15px 0;
-    border-radius: 3px;
 }
 #result > div > div:hover {
     box-shadow: 0 1px 7px #333;
@@ -210,4 +224,74 @@ button {
 
 .for_stop_word{
     display: none;
+}
+
+#cards {
+    overflow-x: scroll;
+    border: none;
+}
+
+.card {
+    flex-flow: column;
+    margin: 10px;
+    padding: 10px;
+    min-width: 240px;
+    box-shadow: 0 0 10px #33333333;
+}
+
+.card:hover {
+    box-shadow: 0 0 10px #333333aa;
+}
+
+.card > p {
+    margin: 5px 0;
+}
+
+.card > a {
+    margin: 5px 0;
+}
+
+.choose_map > ul {
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+}
+
+.choose_map > ul > li {
+    font-family: Optima;
+    background: white;
+    border: none;
+    box-shadow: 0 1px 3px #666;
+    border-radius: 3px;
+    padding: 10px;
+    list-style-type: none;
+    margin: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.choose_map > ul > li:hover {
+    box-shadow: 0 1px 7px #666;
+}
+
+.choose_map > ul > li > a {
+    text-decoration: none;
+    color: black;
+}
+
+.highlight{
+    color: green;
+}
+
+#cards {
+    order: 1
+}
+
+#summary {
+    order: 2
+}
+
+#query_container {
+    order: 3
 }
