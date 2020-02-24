@@ -22,6 +22,53 @@ function check_stop_word(){
 
 function search(qualifiedName, value) {
     const res_pos = document.querySelector("#result")
+    res_pos.innerText = ""
+
+    // Related persons query
+    axios.get("http://localhost:8080/pq", {
+        withCredentials: true,
+        params: {
+            key: document.querySelector("#q").value
+        }})
+        .then(persons => {
+            const people = document.createElement("section")
+            people.id = "cards"
+
+            res_pos.appendChild(people)
+
+            console.log(persons)
+
+            persons.data.map(person => {
+                const card     = document.createElement("section")
+                card.classList.add("card")
+
+                const name     = document.createElement("h3")
+                const title    = document.createElement("p")
+                const homepage = document.createElement("a")
+
+                name.innerText     = person.firstname + " " + person.lastname
+                title.innerText    = person.job_title
+                homepage.innerText = "homepage"
+                homepage.href      = person.homepage
+
+                {[name, title, homepage].map(item => card.appendChild(item))}
+
+                if (person.works_at.name){
+                    const works_at     = document.createElement("a")
+                    works_at.innerHTML = "<span class='highlight'>At</span> " + person.works_at.name
+                    works_at.href      = person.works_at.url
+                    card.appendChild(works_at)
+                }
+                if (person.works_on.name){
+                    const works_on     = document.createElement("p")
+                    works_on.innerHTML = "<span class='highlight'>On</span> " + person.works_on.name
+                    card.appendChild(works_on)
+                }
+                people.appendChild(card)
+            })
+        })
+
+    // QA query
     axios.get("http://localhost:8080/q", {
         withCredentials: true,
         params: {
@@ -32,9 +79,10 @@ function search(qualifiedName, value) {
         .then(res => {
             res_data = res.data
             console.log(res_data)
-            res_pos.innerText = ""
 
-            const summary = document.createElement("header")
+            const summary = document.createElement("section")
+            summary.id    = "summary"
+            summary.classList.add("bb")
             var total = 0
             if (typeof(res_data.total) == "number"){
                 total = res_data.total
@@ -47,6 +95,7 @@ function search(qualifiedName, value) {
 
 
             const container = document.createElement("div")
+            container.id    = "query_container"
 
             res_data.results.map((hit, iv) => {
                 const result = document.createElement("div")
@@ -69,6 +118,8 @@ function search(qualifiedName, value) {
 
                 // rate box
                 const section = document.createElement("section")
+                section.classList.add("bb")
+
                 const lable = document.createElement("label")
                 lable.innerText = "relevance:"
                 lable.classList.add("rate")
