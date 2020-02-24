@@ -48,7 +48,7 @@ function load_visualize (){
 
     let option = {
         title: {
-            text: 'Interactive question category visualization',
+            text: 'Interactive Question Category Visualization',
             subtext: 'FROM NJIT TEAM',
             left: 'center'
         },

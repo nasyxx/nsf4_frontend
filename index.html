@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Search</title>
+    <title>Question & Answer</title>
     <script src="axios.min.js"></script>
     <script type="text/javascript" src="hilitor.js"></script>
     <script type="text/javascript" src="echarts.min.js"></script>
@@ -72,8 +72,9 @@
       <label for="s_open">With stop word</label>
     </form>
     <div id="result">
+      <p id="nodata">NO DATA</p>
     </div>
-    <div id="up"><a href="#">^</a></div>
+    <div id="up" onclick="window.scrollTo(0,0)"><a href="#">^</a></div>
 
     <link rel="stylesheet" href="https://unpkg.com/aos/dist/aos.css" />
     <script src="https://unpkg.com/aos/dist/aos.js"></script>

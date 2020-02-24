@@ -22,7 +22,7 @@ function check_stop_word(){
 
 function search(qualifiedName, value) {
     const res_pos = document.querySelector("#result")
-    res_pos.innerText = ""
+    res_pos.innerHTML = ""
 
     // Related persons query
     axios.get("http://localhost:8080/pq", {
@@ -31,7 +31,8 @@ function search(qualifiedName, value) {
             key: document.querySelector("#q").value
         }})
         .then(persons => {
-            const people = document.createElement("section")
+            const people = document.querySelector("#cards") || document.createElement("section")
+            people.innerHTML = ""
             people.id = "cards"
 
             res_pos.appendChild(people)
@@ -80,7 +81,7 @@ function search(qualifiedName, value) {
             res_data = res.data
             console.log(res_data)
 
-            const summary = document.createElement("section")
+            const summary = document.querySelector("#summary") || document.createElement("section")
             summary.id    = "summary"
             summary.classList.add("bb")
             var total = 0
@@ -94,7 +95,7 @@ function search(qualifiedName, value) {
             res_pos.appendChild(summary)
 
 
-            const container = document.createElement("div")
+            const container = document.querySelector("#query_container") || document.createElement("div")
             container.id    = "query_container"
 
             res_data.results.map((hit, iv) => {
@@ -164,6 +165,8 @@ function search(qualifiedName, value) {
             res_pos.appendChild(container)
             new Hilitor("container").apply(res_data.query)
         })
+
+    window.scrollTo(0, document.querySelector("#inp").offsetTop)
 }
 
 window.onload = () => {
