@@ -20,7 +20,7 @@ function check_stop_word(){
 }
 
 
-function search() {
+function search(qualifiedName, value) {
     const res_pos = document.querySelector("#result")
     axios.get("http://localhost:8080/q", {
         withCredentials: true,
@@ -50,7 +50,7 @@ function search() {
 
             res_data.results.map((hit, iv) => {
                 const result = document.createElement("div")
-
+                result.setAttribute('data-aos','"fade-up"')
                 // Header
                 const h    = document.createElement("header")
                 const h_h2 = document.createElement("h2")
@@ -61,7 +61,7 @@ function search() {
                 h.appendChild(h_h2)
                 result.appendChild(h)
 
-                // Artile box
+                // Article box
                 const article = document.createElement("article")
                 const para    = document.createElement("p")
                 para.innerText = hit._source.content
@@ -117,6 +117,9 @@ function search() {
 window.onload = () => {
     init_cookie()
     load_visualize()
+    AOS.init({
+        delay: 1000,
+    });
 
 }
 
