@@ -39,12 +39,11 @@
     <div id="chart" ></div>
     <div class="question_option">
       <label for="Domain">Choose Model to</label>
-      <input type="submit" onclick="download_file()" value="Download" id ='download_button'>
       <select id="Domain"  onchange="load_visualize()">
+        <option value="adqt">All Questions(TFIDF)</option>
+        <option value="wqg">All Questions(Glove)</option>
         <option value="adqb">All Questions(Bow)</option>
         <option value="wqb"> All Questions(Bert)</option>
-        <option value="wqg">All Questions(Glove)</option>
-        <option value="adqt">All Questions(TFIDF)</option>
       </select>
       <select id="download" >
         <option value="">Download File</option>
@@ -53,6 +52,7 @@
         <option value="bow">Bow</option>
         <option value="tfidf">TFIDF</option>
       </select>
+      <input type="submit" onclick="download_file()" value="Download" id ='download_button'>
     </div>
     <div id="inp">
       <select id="filter" onchange="search()" , class="hide">

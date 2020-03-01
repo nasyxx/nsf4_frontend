@@ -83,26 +83,27 @@ function load_visualize (){
         brush: {},
         dataZoom: [
             {
-                type: 'slider',
+                type: 'inside',
                 xAxisIndex: 0,
                 start: 0,
                 end: 100
             },
 
             {
-                type: 'slider',
+                type: 'inside',
                 yAxisIndex: 0,
                 start: 0,
                 end: 100
             },
 
         ],
-        color:['#F75000','#F75000','#F75000','#F75000'],
+        color:['black','black','black','black','#F75000','green','blue','orange','grey',"#AE0000",'#336666','purple','fuchsia','maroon'],
         legend: {
-            data: ['Water Quality', 'Wild File','BIO','GIS'],
-            top: "10%",
-            right: "6%",
-
+            data: ['Water Quality', 'Wild File','BIO','GIS','category0','category1','category2','category3','category4','category5','category6','category7','category8','category9'],
+            top: "8%",
+            right: "1%",
+            orient: 'vertical',
+            type: 'scroll',
         },
 
         xAxis: [
@@ -140,7 +141,7 @@ function load_visualize (){
                         let color
                         switch (params.value[3]) {
                             case 0:
-                                color = "black"
+                                color = "#F75000"
                                 break
                             case 1:
                                 color = "green"
@@ -177,13 +178,13 @@ function load_visualize (){
                 name: 'Wild File',
                 type: 'scatter',
                 data: fire_data,
-                symbol: 'circle',
+                symbol: 'arrow',
                 itemStyle: {
                     color: function (params) {
                         let color
                         switch (params.value[3]) {
                             case 0:
-                                color = "black"
+                                color = "#F75000"
                                 break
                             case 1:
                                 color = "green"
@@ -226,7 +227,7 @@ function load_visualize (){
                         let color
                         switch (params.value[3]) {
                             case 0:
-                                color = "black"
+                                color = "#F75000"
                                 break
                             case 1:
                                 color = "green"
@@ -269,7 +270,7 @@ function load_visualize (){
                         let color
                         switch (params.value[3]) {
                             case 0:
-                                color = "black"
+                                color = "#F75000"
                                 break
                             case 1:
                                 color = "green"
@@ -302,7 +303,47 @@ function load_visualize (){
                         return color
                     }
                 },
-            },
+            },{
+                name:'category0',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category1',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category2',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category3',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category4',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category5',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category6',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category7',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category8',
+                type: 'scatter',
+                symbol:'circle'
+            },{
+                name:'category9',
+                type: 'scatter',
+                symbol:'circle'
+            }
 
         ]
     }
