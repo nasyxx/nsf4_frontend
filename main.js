@@ -139,25 +139,29 @@ function search(qualifiedName, value) {
                 })
                 const imgs = select.children
                 let score
+                const mute_star = "img/star-off.png"
+                const shining_star = "img/star-on.png"
                 for(let i=0;i<imgs.length;i++){
                     imgs[i].setAttribute("score", i + 1);
                     imgs[i].onclick=function(e){
                         const srcEl= e.target;
                         score=srcEl.getAttribute("score");
                         for(let j=0;j<score;j++){
-                            imgs[j].src="img/star-on.png";
+                            imgs[j].src= shining_star;
                         }
                         for(let j=score;j<imgs.length;j++){
-                            imgs[j].src="img/star-off.png";
+                            imgs[j].src=mute_star;
                         }
                     }
                 }
-                score = hit.rate || 0
-                for(let j=0;j<score;j++){
-                    imgs[j].src="img/star-on.png";
+                let score1 = hit.rate || 0
+                let score_int = parseInt(score1)
+
+                for(let j=0;j<score_int;j++){
+                    imgs[j].src=shining_star;
                 }
-                for(let j=score;j<imgs.length;j++){
-                    imgs[j].src="img/star-off.png";
+                for(let j=score_int;j<imgs.length;j++){
+                    imgs[j].src=mute_star;
                 }
                 section.appendChild(select)
                 const rate_b = document.createElement("button")
