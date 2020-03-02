@@ -200,11 +200,3 @@ window.onload = () => {
     load_visualize()
     AOS.init()
 }
-
-const Open_newPage = () =>{
-    if (document.getElementById("select_map").value === "water_map"){
-        window.open('water-map.html')
-    }else if (document.getElementById("select_map").value === "bio_map"){
-        window.open("bio-map.html")
-    }
-}
