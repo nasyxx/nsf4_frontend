@@ -51,6 +51,7 @@ function search(qualifiedName, value) {
                 title.innerText    = person.job_title
                 homepage.innerText = "homepage"
                 homepage.href      = person.homepage
+                homepage.target    =  '_blank'
 
                 {[name, title, homepage].map(item => card.appendChild(item))}
 
@@ -58,6 +59,7 @@ function search(qualifiedName, value) {
                     const works_at     = document.createElement("a")
                     works_at.innerHTML = "<span class='highlight'>At</span> " + person.works_at.name
                     works_at.href      = person.works_at.url
+                    works_at.target    = '_blank'
                     card.appendChild(works_at)
                 }
                 if (person.works_on.name){

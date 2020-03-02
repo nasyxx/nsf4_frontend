@@ -50,7 +50,9 @@ h1 {
     font-size: 1rem;
     font-family: Optima;
 }
-
+.input_search{
+    background-color: #e0f9b577;
+}
 select, input {
     height: 2rem;
     font-size: 1rem;
