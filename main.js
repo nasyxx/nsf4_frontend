@@ -127,19 +127,39 @@ function search(qualifiedName, value) {
                 lable.classList.add("rate")
                 section.appendChild(lable)
 
-                const select = document.createElement("select")
+                const select = document.createElement("div")
                 select.id = "rate-" + iv
                 select.classList.add("rate")
                 select.classList.add("rate-c")
                 Array(5).fill().map((_, value) => {
-                    const o = document.createElement("option")
-                    o.value = value
-                    o.innerText = value
+                    const o = document.createElement("img")
+                    o.src = 'img/star-off.png'
+                    o.alt = 'star'
                     select.appendChild(o)
                 })
-                select.value = hit.rate || 0
+                const imgs = select.children
+                let score
+                for(let i=0;i<imgs.length;i++){
+                    imgs[i].setAttribute("score", i + 1);
+                    imgs[i].onclick=function(e){
+                        const srcEl= e.target;
+                        score=srcEl.getAttribute("score");
+                        for(let j=0;j<score;j++){
+                            imgs[j].src="img/star-on.png";
+                        }
+                        for(let j=score;j<imgs.length;j++){
+                            imgs[j].src="img/star-off.png";
+                        }
+                    }
+                }
+                score = hit.rate || 0
+                for(let j=0;j<score;j++){
+                    imgs[j].src="img/star-on.png";
+                }
+                for(let j=score;j<imgs.length;j++){
+                    imgs[j].src="img/star-off.png";
+                }
                 section.appendChild(select)
-
                 const rate_b = document.createElement("button")
                 rate_b.id = "submit-rate-" + iv
                 rate_b.classList.add("rate")
@@ -148,7 +168,7 @@ function search(qualifiedName, value) {
                 rate_b.addEventListener("click", () => {
                     axios.post("http://localhost:8080/rate", {
                         query: document.querySelector("#q").value,
-                        ans: hit, rate: parseInt(select.value)
+                        ans: hit, rate: parseInt(score)
                     }, {withCredentials: true})
                         .then(res => {
                             if (res.status == 1) {
