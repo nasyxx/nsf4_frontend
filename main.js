@@ -129,43 +129,38 @@ function search(qualifiedName, value) {
                 lable.classList.add("rate")
                 section.appendChild(lable)
 
-                const select = document.createElement("div")
-                select.id = "rate-" + iv
-                select.classList.add("rate")
-                select.classList.add("rate-c")
+                const rate = document.createElement("div")
+                rate.id = "rate-" + iv
+                rate.classList.add("rate")
+                rate.classList.add("rate-c")
                 Array(5).fill().map((_, value) => {
                     const o = document.createElement("img")
                     o.src = 'img/star-off.png'
                     o.alt = 'star'
-                    select.appendChild(o)
+                    rate.appendChild(o)
                 })
-                const imgs = select.children
-                let score
+                const imgs = Array.from(rate.children)
+
                 const mute_star = "img/star-off.png"
                 const shining_star = "img/star-on.png"
-                for(let i=0;i<imgs.length;i++){
-                    imgs[i].setAttribute("score", i + 1);
-                    imgs[i].onclick=function(e){
-                        const srcEl= e.target;
-                        score=srcEl.getAttribute("score");
-                        for(let j=0;j<score;j++){
-                            imgs[j].src= shining_star;
-                        }
-                        for(let j=score;j<imgs.length;j++){
-                            imgs[j].src=mute_star;
-                        }
-                    }
-                }
-                let score1 = hit.rate || 0
-                let score_int = parseInt(score1)
 
-                for(let j=0;j<score_int;j++){
-                    imgs[j].src=shining_star;
-                }
-                for(let j=score_int;j<imgs.length;j++){
-                    imgs[j].src=mute_star;
-                }
-                section.appendChild(select)
+                imgs.map((img, i) => {
+                    img.setAttribute("score", i + 1)
+                    img.onclick = e => {
+                        const srcEl = e.target
+                        const score = srcEl.getAttribute("score")
+                        imgs.map((img, j) => {
+                            img.src = j < score ? shining_star : mute_star
+                        })
+                    }
+                })
+
+                const score = parseInt(hit.rate) || 0
+                imgs.map((img, j) => {
+                    img.src = j < score ? shining_star : mute_star
+                })
+
+                section.appendChild(rate)
                 const rate_b = document.createElement("button")
                 rate_b.id = "submit-rate-" + iv
                 rate_b.classList.add("rate")
