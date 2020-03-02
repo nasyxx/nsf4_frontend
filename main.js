@@ -198,7 +198,7 @@ function search(qualifiedName, value) {
 window.onload = () => {
     init_cookie()
     load_visualize()
-
+    AOS.init()
 }
 
 const Open_newPage = () =>{
