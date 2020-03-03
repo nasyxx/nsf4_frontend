@@ -59,7 +59,7 @@ function load_visualize (){
             formatter: function (params) {
 
                 return '<div class="tool_div">' + params.seriesName + ' :<br/>' + params.value[2] + '<br/>'
-                    + 'category number: ' + params.value[3] + '<br/>' + '</div>'
+                    + '</div>'
 
             },
 
