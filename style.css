@@ -59,13 +59,17 @@ select, input {
     font-family: Optima;
     background: white;
     border: none;
-    box-shadow: 0 1px 3px #666;
-    border-radius: 3px;
+    box-shadow: 0 1px 3px #66666666;
     padding: 10px;
+    border-radius: 0;
 }
-select:hover, input:hover {
-    background-color: #eee;
-    box-shadow: 0 1px 3px #666;
+select:hover, input:hover, .choose_map > ul > li:hover {
+    background-color: #f69d9d;
+    box-shadow: 0 1px 3px #666666;
+}
+
+#q:hover {
+    background-color: #f69d9d66;
 }
 
 article {
@@ -120,7 +124,6 @@ button {
     margin: 10px 0;
     box-shadow: 0 1px 3px #666;
     padding: 0 5px;
-    border-radius: 3px;
 }
 #result > header:hover {
     box-shadow: 0 1px 7px #666;
@@ -183,9 +186,10 @@ button {
     margin-left: 15px;
     padding-top: 4px;
 }
-#download_button{
+#download_button {
     margin-left: 15px;
     padding-top: 6px;
+    cursor: pointer;
 }
 .tool_div{
     white-space:normal;
@@ -210,7 +214,6 @@ button {
     content: "";
     width: 16px;
     height: 16px;
-    border-radius: 50%;
     border: 1px solid rgb(219, 219, 219);
     margin-right: 6px;
     vertical-align: bottom;
@@ -224,7 +227,6 @@ button {
     content: "";
     width: 18px;
     height: 18px;
-    border-radius: 50%;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -271,17 +273,12 @@ button {
     font-family: Optima;
     background: white;
     border: none;
-    box-shadow: 0 1px 3px #666;
-    border-radius: 3px;
+    box-shadow: 0 1px 3px #66666666;
     padding: 10px;
     list-style-type: none;
     margin: 5px;
     display: flex;
     justify-content: flex-end;
-}
-
-.choose_map > ul > li:hover {
-    box-shadow: 0 1px 7px #666;
 }
 
 .choose_map > ul > li > a {
