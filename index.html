@@ -14,17 +14,18 @@
     <script src="questions/download_file/download_function.js"></script>
     <link rel="stylesheet" href="style.css"/>
     <link rel="stylesheet" href="libs/v6.1.1-dist/ol.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos/dist/aos.css"/>
   </head>
   <body>
-    <dix class = 'top_box'>
+    <div class = "top_box">
       <h1>Question & Answer</h1>
-      <div class = 'choose_map'>
+      <div class = "choose_map">
         <ul>
           <li><a href="bio-map.html" target="_blank">Map Bio Data</a></li>
           <li><a href="water-map.html" target="_blank">Map Water_quality Data</a></li>
         </ul>
       </div>
-    </dix>
+    </div>
 
     <!--<div id ="js-map" class="map">-->
     <!-- Popup -->
@@ -32,8 +33,8 @@
       <a href="#" id="popup-closer" class="ol-popup-closer"></a>
       <div id="popup-content"></div>
     </div>
-    </div>
-    <div id="chart" ></div>
+
+    <div id="chart"></div>
     <div class="question_option">
       <label for="Domain">Choose Model to</label>
       <select id="Domain"  onchange="load_visualize()">
@@ -49,7 +50,7 @@
         <option value="bow">Bow</option>
         <option value="tfidf">TFIDF</option>
       </select>
-      <input type="submit" onclick="download_file()" value="Download" id ='download_button'>
+      <input type="submit" onclick="download_file()" value="Download" id ="download_button">
     </div>
     <div id="inp">
       <select id="filter" onchange="search()" , class="hide">
@@ -72,11 +73,6 @@
       <p id="nodata">NO DATA</p>
     </div>
     <div id="up" onclick="window.scrollTo(0,0)"><a href="#">^</a></div>
-
-    <link rel="stylesheet" href="https://unpkg.com/aos/dist/aos.css" />
     <script src="https://unpkg.com/aos/dist/aos.js"></script>
-    <script>
-      AOS.init()
-    </script>
   </body>
 </html>
