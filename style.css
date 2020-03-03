@@ -37,7 +37,10 @@ h1 {
     height: 80vw;
     max-height: 660px;
     margin: 10px 0;
-    box-shadow: 0 0 10px #33333333;
+    box-shadow: 0 0 5px #33333333;
+}
+#chat:hover {
+    box-shadow: 0 0 10px #33333366;
 }
 #inp {
     display: flex;
