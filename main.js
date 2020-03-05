@@ -53,19 +53,35 @@ function search(qualifiedName, value) {
                 homepage.href      = person.homepage
                 homepage.target    =  '_blank'
 
-                {[name, title, homepage].map(item => card.appendChild(item))}
+                Array.from([name, title, homepage]).map(item => card.appendChild(item))
 
-                if (person.works_at.name){
+                if (person.works_at_name){
                     const works_at     = document.createElement("a")
-                    works_at.innerHTML = "<span class='highlight'>At</span> " + person.works_at.name
-                    works_at.href      = person.works_at.url
+                    works_at.innerHTML = "<span class='highlight'>At</span> " + person.works_at_name
+                    works_at.href      = person.works_at_url
                     works_at.target    = '_blank'
                     card.appendChild(works_at)
                 }
-                if (person.works_on.name){
-                    const works_on     = document.createElement("p")
-                    works_on.innerHTML = "<span class='highlight'>On</span> " + person.works_on.name
+                if (person.works_on_name){
+                    const works_on = person.works_on_url ? document.createElement("a") : document.createElement("p")
+                    if (person.works_on_url){
+                        works_on.href   = person.works_on_url
+                        works_on.target = '_blank'
+                    }
+                    works_on.innerHTML = "<span class='highlight'>On</span> " + person.works_on_name
                     card.appendChild(works_on)
+
+                    if (person.works_on_desc){
+                        const works_on_desc     = document.createElement("p")
+                        works_on_desc.innerText = person.works_on_decs
+                        card.appendChild(works_on_desc)
+                    }
+                }
+                if (person.from_){
+                    const from_     = document.createElement("p")
+                    from_.innerText = person.from_
+                    from_.classList.add("from")
+                    card.appendChild(from_)
                 }
                 people.appendChild(card)
             })
