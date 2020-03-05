@@ -321,3 +321,7 @@ button {
     order: 3;
     align-self: stretch;
 }
+
+.from {
+    text-shadow: 0 0 10px #5b8c5a;
+}
