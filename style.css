@@ -24,6 +24,11 @@ h1 {
     font-family: cursive;
 
 }
+
+h3 {
+    align-self: center;
+}
+
 .top_box{
     display: flex;
     justify-content: space-between;
@@ -154,7 +159,7 @@ button {
 #up {
     position: fixed;
     bottom: 5vh;
-    box-shadow: 0 0 3px 1px #666;
+    box-shadow: 0 0 3px 1px #66666666;
     padding: 5px 10px;
     text-align: center;
     border-radius: 100%;
@@ -162,7 +167,7 @@ button {
     right: 15vh;
 }
 #up:hover {
-    box-shadow: 0 0 3px 3px #666;
+    box-shadow: 0 0 3px 3px #33333333;
     background-color: #eee;
     opacity: 0.8;
 }
@@ -173,6 +178,14 @@ button {
 #up > a:hover {
     opacity: 0.8;
 }
+
+@media screen and (min-width: 1080px){
+    #up {
+        background-color: #e0f9b5dd;
+        color: #e0f9b5;
+    }
+}
+
 .question_option{
     display: flex;
     align-items: center;
@@ -251,6 +264,7 @@ button {
     padding: 10px;
     min-width: 240px;
     box-shadow: 0 0 10px #33333333;
+    align-items: baseline;
 }
 
 .card:hover {
