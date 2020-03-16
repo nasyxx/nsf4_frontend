@@ -2,6 +2,7 @@ let bio_question
 let wq_data
 let fire_data
 let gis_data
+let mark = []
 function read_data(question_data) {
     let b_wq = []
     let b_fire = []
@@ -34,7 +35,6 @@ function read_data(question_data) {
 }
 
 const load_visualize2 = (dataToRead) =>{
-    let mark = [0,0]
     let questionToSearch = document.getElementById("q").value
     for (let i = 0; i < dataToRead.length; i++){
         if (dataToRead[i].question === questionToSearch){
