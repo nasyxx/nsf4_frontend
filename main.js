@@ -21,6 +21,7 @@ function check_stop_word(){
 
 
 function search(qualifiedName, value) {
+    load_visualize()
     const res_pos = document.querySelector("#result")
     res_pos.innerHTML = ""
 

@@ -33,18 +33,18 @@ function read_data(question_data) {
 
 }
 
+const load_visualize2 = (dataToRead) =>{
+    let mark = [0,0]
+    let questionToSearch = document.getElementById("q").value
+    for (let i = 0; i < dataToRead.length; i++){
+        if (dataToRead[i].question === questionToSearch){
+            mark[0] = dataToRead[i].x
+            mark[1] = dataToRead[i].y
+            break;
+        }
 
-
-function load_visualize (){
-    if (document.getElementById("Domain").value === "wqb") {
-        read_data(bert)
-    }else if (document.getElementById("Domain").value === "adqb"){
-        read_data(bow)
-    }else if(document.getElementById("Domain").value === "wqg"){
-        read_data(glove)
-    }else if(document.getElementById("Domain").value === "adqt"){
-        read_data(tfidf)
     }
+    console.log(mark)
 
     let option = {
         title: {
@@ -180,6 +180,21 @@ function load_visualize (){
                         return color
                     }
                 },
+                markPoint:{
+                   data:[
+                       {
+                           name: '',
+                           coord:mark,
+                       },
+
+                   ],
+                    itemStyle:{
+                       color: '#f76a8c',
+
+                    }
+                }
+
+
             },{
                 name: 'Wild Land Fire',
                 type: 'scatter',
@@ -353,6 +368,7 @@ function load_visualize (){
 
         ]
     }
+
     const dom = document.getElementById("chart")
     const myChart = echarts.init(dom)
 
@@ -363,7 +379,33 @@ function load_visualize (){
         let chartData =  params.value[2]
         document.getElementById('q').value = chartData
         search()
+
     })
+
+}
+
+
+
+
+const load_visualize = () =>{
+
+    if (document.getElementById("Domain").value === "wqb") {
+        read_data(bert)
+        load_visualize2(bert)
+    }else if (document.getElementById("Domain").value === "adqb"){
+        read_data(bow)
+        load_visualize2(bow)
+    }else if(document.getElementById("Domain").value === "wqg"){
+        read_data(glove)
+        load_visualize2(glove)
+    }else if(document.getElementById("Domain").value === "adqt"){
+        read_data(tfidf)
+        load_visualize2(tfidf)
+    }
+
 
 
 }
+
+
+
