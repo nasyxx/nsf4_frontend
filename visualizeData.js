@@ -92,14 +92,14 @@ const load_visualize2 = (dataToRead) =>{
         brush: {},
         dataZoom: [
             {
-                type: 'select',
+                type: 'inside',
                 xAxisIndex: 0,
                 start: 0,
                 end: 100
             },
 
             {
-                type: 'select',
+                type: 'inside',
                 yAxisIndex: 0,
                 start: 0,
                 end: 100
