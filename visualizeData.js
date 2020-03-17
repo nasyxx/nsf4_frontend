@@ -34,7 +34,10 @@ function read_data(question_data) {
 
 }
 
+
+
 const load_visualize2 = (dataToRead) =>{
+    mark = []
     let questionToSearch = document.getElementById("q").value
     for (let i = 0; i < dataToRead.length; i++){
         if (dataToRead[i].question === questionToSearch){
@@ -370,7 +373,13 @@ const load_visualize2 = (dataToRead) =>{
     }
 
     const dom = document.getElementById("chart")
-    const myChart = echarts.init(dom)
+    const domParent =dom.parentNode
+    domParent.removeChild(dom)
+    const newChart = document.createElement('div')
+    domParent.appendChild(newChart)
+    newChart.id = 'chart'
+    const myChart = echarts.init(newChart)
+
 
     if (option && typeof option === "object") {
         myChart.setOption(option, true)
